@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { RouterView, useRouter, useRoute } from 'vue-router'
-import { Menu as IconMenu, Expand, Fold, Document, Setting, House } from '@element-plus/icons-vue'
+import {
+  Menu as IconMenu,
+  Expand,
+  Fold,
+  Document,
+  Setting,
+  House,
+  Sunny
+} from '@element-plus/icons-vue'
 import { ref, onMounted, watch } from 'vue'
 
 const router = useRouter()
@@ -28,7 +36,9 @@ function menuSelect(index: string) {
 <template>
   <el-container class="app-content">
     <el-header>
-      <h1>Vue3 Vite TS Demo</h1>
+      <h1 class="header-title">
+        <el-icon class="is-loading"><Sunny /></el-icon>Vue3 Vite TS Demo
+      </h1>
     </el-header>
     <el-container class="body-container">
       <el-aside :class="{ 'is-collapse': isCollpase }" width="200px">
@@ -54,7 +64,7 @@ function menuSelect(index: string) {
             <el-icon>
               <House />
             </el-icon>
-            主页
+            <span>主页</span>
           </el-menu-item>
           <el-sub-menu index="feature">
             <template #title>
@@ -102,6 +112,14 @@ function menuSelect(index: string) {
     color: var(--white-text);
     background-color: var(--bg-dark-theme);
     border-bottom: 1px solid var(--grey-border-box);
+
+    .header-title {
+      display: flex;
+      place-items: center;
+      .el-icon { 
+        margin-right: 10px;
+      }
+    }
   }
 
   .body-container {
