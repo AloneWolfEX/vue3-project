@@ -15,8 +15,9 @@ async function getCanvas(el) {
 }
 
 async function generatePDF(el, fileName = 'download.pdf') {
-  const A4_WIDTH = 595
-  const A4_HEIGHT = 842
+    // A4 宽高
+//   const A4_WIDTH = 592.28
+//   const A4_HEIGHT = 841.89
   const PAGE_MARGIN = 10 // 间距
 
   const pdf = new jsPDF({
@@ -24,7 +25,7 @@ async function generatePDF(el, fileName = 'download.pdf') {
     unit: 'pt',
     format: 'a4'
   })
-  // PDF 页面宽高
+  // PDF 页面宽高 等同 A4
   const pdfWidth = pdf.internal.pageSize.getWidth()
   const pdfHeight = pdf.internal.pageSize.getHeight()
   // PDF 内容宽高
