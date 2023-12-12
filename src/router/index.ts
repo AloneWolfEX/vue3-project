@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import HomeIndex from '@/views/HomeIndex.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,21 +9,45 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/feature',
-      name: 'feature',
-      component: () => import('@/views/HomeIndex.vue'),
-      redirect: { name: 'pdf-demo' },
+      name: 'app',
+      component: HomeIndex,
       children: [
         {
-          path: 'pdf-demo',
-          name: 'pdf-demo',
-          component: () => import('@/views/feature/PDFDemo.vue'),
+          path: 'feature',
+          name: 'feature',
+          component: () => import('@/views/ComponentIndex.vue'),
+          redirect: { name: 'pdf-demo' },
+          meta: {
+            title: '功能组件'
+          },
+          children: [
+            {
+              path: 'pdf-demo',
+              name: 'pdf-demo',
+              component: () => import('@/views/feature/PDFDemo.vue'),
+              meta: {
+                title: 'PDF导出'
+              }
+            },
+            {
+              path: 'img-cropper',
+              name: 'img-cropper',
+              component: () => import('@/views/feature/ImgCropper.vue'),
+              meta: {
+                title: '图片裁剪'
+              }
+            },
+          ]
         }
       ]
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: HomeView,
+      meta: {
+        title: '主页'
+      }
     }
   ]
 })

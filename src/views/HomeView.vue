@@ -13,7 +13,7 @@ import { RouterLink } from 'vue-router'
       <HelloWorld msg="You did it!" />
 
       <nav>
-        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/home">Home</RouterLink>
         <RouterLink to="/feature">Index</RouterLink>
       </nav>
     </div>

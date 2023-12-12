@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
 
 </script>
 
 <template>
-  <RouterView />
+  <h1>图片裁剪 vue-cropper</h1>
 </template>
 
 <style lang="scss" scoped>
