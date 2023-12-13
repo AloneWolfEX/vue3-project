@@ -38,7 +38,25 @@ const router = createRouter({
               }
             },
           ]
-        }
+        },
+        {
+          path: 'others',
+          name: 'others',
+          component: () => import('@/views/ComponentIndex.vue'),
+          meta: {
+            title: '其他'
+          },
+          children: [
+            {
+              path: 'layout',
+              name: 'layout',
+              component: () => import('@/views/others/LayoutIndex.vue'),
+              meta: {
+                title: '排版'
+              }
+            },
+          ]
+        },
       ]
     },
     {
