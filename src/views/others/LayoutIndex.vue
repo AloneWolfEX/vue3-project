@@ -1,109 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { calculate } from './rabbit'
+import { calculate } from '@/utils/rabbit'
 
 onMounted(() => {
-	// 1.数组中找出n个数求和等于目标值target的数组下标数组
-	// const nums = [3,2,4,5,7] // 源数组
-	// const target = 10 // 目标值
-	// const n = 3 // 元素个数
-	// const result = getArray(nums, target, n)
-	// console.log(result)
-
-	// 2.promise yield生成器顺序执行异步函数(不使用 async/await)
-	// const ajaxList = [
-	//     new Promise((resolve, reject) => {
-	//         console.log(1)
-	//         setTimeout(() => {
-	//             resolve(true)
-	//         }, 1000)
-	//     }),
-	//     new Promise((resolve, reject) => {
-	//         console.log(2)
-	//         setTimeout(() => {
-	//             resolve(true)
-	//         }, 1000)
-	//     }),
-	//     new Promise((resolve, reject) => {
-	//         console.log(3)
-	//         setTimeout(() => {
-	//             resolve(true)
-	//         }, 1000)
-	//     }),
-	// ]
-	// const fn = function* (ajaxList) {
-	//     const promiseList = []
-	//     for (const ajax of ajaxList) {
-	//         const promise = yield ajax
-	//         promiseList.push(promise)
-	//     }
-
-	//     return Promise.resolve(promiseList)
-	// }
-	// startPromise(fn(ajaxList)).then(data => {
-	//     console.log(data) // [true, true, true]
-	// })
-
 	// 3.一对兔子生一对兔子
 	// 第24个月, 5个月成熟
 	// console.log(calculate(24, 5).length) // 431
 	// 第10个月, 4个月成熟
 	console.log(calculate(10, 4).length) // 14
 })
-
-// 计算数组中n个元素求和为target的下标数组
-function getArray(nums: Array<number>, target: number, n: number) {
-    const array: Array<number> = []
-    const result: Array<Array<number>> = []
-
-    const handler = (num: number, targetNum: number) => {
-        // console.log(array)
-        if (targetNum === 0 && array.length === n) {
-            console.log(`output->yes`, array)
-            result.push([...array]) // 避免array更新数据影响
-            return
-        }
-
-        for (let i = num; i < nums.length; i++) {
-            if (nums[i] > targetNum) {
-                break
-            }
-
-            // console.log(`output->当前循环`, nums[i])
-            array.push(i)
-            handler(i + 1, targetNum - nums[i])
-            // console.log(`output->当前循环结束`, nums[i])
-            array.pop()
-        }
-    }
-
-    handler(0, target)
-    return result[0]
-}
-
-// 生成器方式使 promise 顺序执行
-function startPromise(fn) {
-    return new Promise((resolve, reject) => {
-        const array = []
-        function next(preResult) {
-            if (preResult) {
-                array.push(preResult)
-            }
-
-            const result = fn.next()
-
-            if (result.done) {
-                resolve(array)
-            } else {
-                result.value.then(curResult => {
-                    next(curResult)
-                })
-            }
-        }
-
-        next()
-    })
-}
 </script>
 
 <template>
@@ -167,3 +72,4 @@ function startPromise(fn) {
     }
 }
 </style>
+../../utils/rabbit
